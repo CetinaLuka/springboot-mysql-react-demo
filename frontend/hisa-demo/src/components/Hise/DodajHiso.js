@@ -1,6 +1,7 @@
 
 import { Button, Checkbox, TextField } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
 const DodajHiso = () => {
@@ -8,6 +9,7 @@ const DodajHiso = () => {
     const [naslov, setNaslov] = useState("");
     const [velikost, setVelikost] = useState(0);
     const [vrt, setVrt] = useState(false);
+    let navigate = useNavigate();
 
     const dodajHiso = () => {
         api.post("/hise", {
@@ -20,6 +22,7 @@ const DodajHiso = () => {
 
     return (
         <div>
+            <Button variant="contained" onClick={() => navigate("/hise")}>Nazaj na hiše</Button>
             <p>Dodajanje hiše</p>
             <TextField variant="outlined" value={hisnaStevilka} onChange={(event) => setHisnaStevilka(event.target.value)}/><br />
             <TextField variant="outlined" value={naslov} onChange={(event) => setNaslov(event.target.value)}/><br />
