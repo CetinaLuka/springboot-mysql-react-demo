@@ -85,6 +85,27 @@ export default api;
   }
  ```
  
+ ## Navigacija po strani
+ V React projekt za navigacijo med stranmi ne uporabljamo klasičnih <a> značk, ampak uporabljamo pristope, značilne za React. V sklopu tega projekta bomo pokazali dva:
+   - **useNavigate()**
+ 
+      Metoda s pomočjo katere lahko navigiramo do želenega url naslova (znotraj naše spletne strani). Ker lahko metodo pokličemo le znotraj react komponente jo po navadi shranimo v spremenljivko `navigate`, ki jo nato uporabljamo v komponenti. Primer:
+ ```
+ import { useNavigate } from "react-router-dom";
+ 
+ component Komponenta = () => {
+   let navigate = usenavigate();
+   return(
+      <button onClick={() => navigate("/")}>Domov</button>
+   );
+ }
+ ```
+   - **<Link>** 
+ 
+     Komponenta s pomočjo katere lahko ustvarimo klasičen <a> link. Primer:
+ 
+     `<Link to="/"><p>Domov</p></Link>`
+ 
  # Pogoste napake
  - ***module not found*** ob izvedbi ukaza `npm start`
    - Izbrišite datoteko `package-lock.json` ter mapo `node_modules` in ponovno izvedite ukaz `npm install`. Ko se ta izvede, ponovno poskusite pognati projekt.
@@ -99,4 +120,5 @@ export default api;
 # Uporabne povezave
 - [MUI - React components](https://mui.com/)
 - [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/en/main)
  
