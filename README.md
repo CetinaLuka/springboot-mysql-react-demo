@@ -10,22 +10,23 @@
     - `services` - sem sodijo storitve, ki nam bodo omogočile pridobivanje podatkov iz zaledja
     - `assets` - sem sodijo slike, dodatne css, javascript datoteke ipd.
  3. Dodajanje knjižnic/odvisnosti
+ 
     Odvisnosti so zunanje knjižnice, ki jih vključimo v projekt. Pri SpringBoot je za to skrbel **Maven**, pri Reactu pa bomo za to uporabljali **npm**. Za ta demo moramo    dodati sledeče knjižnice:
-     - `npm install react-router-dom` (skrbi za navigacijo po straneh in spreminjanje url naslova)
+     - `npm install react-router-dom` (skrbi za navigacijo po straneh in spreminjanje URL naslova)
      - `npm install @mui/material @emotion/react @emotion/styled @mui/icons-material` (nudijo že oblikovanje komponente, ki jih lahko na preprost način vključimo v projekt)
      - `npm install axios` - knjižnica za proženje REST zahtev, ki nam bo pomagala pridobiti podatke iz zaledja.
  4. Vzpostavitev "routinga"
-     - V mapi `src/components` ustvarimo novo mapo z imenom `routing`, v njej pa datoteko `Routing.js`. V tej datoteki bomo definirali katere komponente naj se prikažejo ob obisku določenega url (glej vsebino datoteke v repozitoriju).
+     - V mapi `src/components` ustvarimo novo mapo z imenom `routing`, v njej pa datoteko `Routing.js`. V tej datoteki bomo definirali katere komponente naj se prikažejo ob obisku določenega URL (glej vsebino datoteke v repozitoriju).
      - V datoteki `App.js` odstranimo vsebino značke `<div className="App">` in dodamo:
 ```
 <BrowserRouter>
     <Routing />
 </BrowserRouter>
 ```
-Če želimo v spletni strani imeti naslovno vrstico, ki bo enaka na vseh straneh, jo dodamo nad komponento `<Routing />`.
+ Če želimo v spletni strani imeti naslovno vrstico, ki bo enaka na vseh straneh, jo dodamo nad komponento `<Routing />`.
  # Vzpostavitev komunikacije z zaledjem
- 1. V korenski imenik React projekta dodamo .env datoteke, v katero zapišemo spremenljivko, ki bo hranila url na katerem lahko dostopamo do podatkov iz zalednega sistema. Vse spremenljivke v .env datoteki se morajo začeti z REACT_APP... 
- 2. Dodamo spremenljivko, ki vsebuje osnovi url vašega zaledja `REACT_APP_BASE_URL=http://127.0.0.1:8180/api/v1`
+ 1. V korenski imenik React projekta dodamo .env datoteke, v katero zapišemo spremenljivko, ki bo hranila URL na katerem lahko dostopamo do podatkov iz zalednega sistema. Vse spremenljivke v .env datoteki se morajo začeti z REACT_APP... 
+ 2. Dodamo spremenljivko, ki vsebuje osnovi URL vašega zaledja `REACT_APP_BASE_URL=http://127.0.0.1:8180/api/v1`
  3. V mapi `services` ustvarimo datoteko `api.js` in vanjo zapišemo:
  ```
 import axios from "axios";
@@ -89,7 +90,7 @@ export default api;
  V React projekt za navigacijo med stranmi ne uporabljamo klasičnih <a> značk, ampak uporabljamo pristope, značilne za React. V sklopu tega projekta bomo pokazali dva:
    - **useNavigate()**
  
-      Metoda s pomočjo katere lahko navigiramo do želenega url naslova (znotraj naše spletne strani). Ker lahko metodo pokličemo le znotraj react komponente jo po navadi shranimo v spremenljivko `navigate`, ki jo nato uporabljamo v komponenti. Primer:
+      Metoda s pomočjo katere lahko navigiramo do želenega URL naslova (znotraj naše spletne strani). Ker lahko metodo pokličemo le znotraj react komponente jo po navadi shranimo v spremenljivko `navigate`, ki jo nato uporabljamo v komponenti. Primer:
  ```
  import { useNavigate } from "react-router-dom";
  
@@ -114,9 +115,9 @@ export default api;
   - Preverite, če imate knjižnico `react-router-dom` dodano med odvisnosti v `package.json`
 - Vrednost iz .env datoteke se ne posodobi
    - Preverite če se ime spremenljivke začne z REACT_APP
-   - Ustavite in zaženite strežnik. Vrednosti spremenljivk v .env se ponovno preberejo šele ob ponovnem zagonu strežnika.
+   - Ustavite in vnovič zaženite strežnik. Vrednosti spremenljivk v .env se ponovno preberejo šele ob ponovnem zagonu strežnika.
 - CORS error
-   - V zalednji sistem je potrebno vsem controllerjem dodati anotacijo `@CrossOrigin`
+   - V zaledni sistem je potrebno vsem controllerjem dodati anotacijo `@CrossOrigin`
 # Uporabne povezave
 - [MUI - React components](https://mui.com/)
 - [React](https://reactjs.org/)
