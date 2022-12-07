@@ -24,8 +24,21 @@
 ```
 Če želimo v spletni strani imeti naslovno vrstico, ki bo enaka na vseh straneh, jo dodamo nad komponento `<Routing />`.
  # Vzpostavitev komunikacije z zaledjem
- 1. Dodajanje .env datoteke
- 2. 
+ 1. V korenski imenik React projekta dodamo .env datoteke, v katero zapišemo spremenljivko, ki bo hranila url na katerem lahko dostopamo do podatkov iz zalednega sistema. Vse spremenljivke v .env datoteki se morajo začeti z REACT_APP... 
+ 2. Dodamo spremenljivko, ki vsebuje osnovi url vašega zaledja `REACT_APP_BASE_URL=http://127.0.0.1:8180/api/v1`
+ 3. V mapi `services` ustvarimo datoteko `api.js` in vanjo zapišemo:
+ ```
+import axios from "axios";
+const api = axios.create({
+    baseURL: process.env.REACT_APP_BASE_URL,
+    timeout: 30000,
+    headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+    },
+});
+export default api;
+ ```
  # Pomembni koncepti/elementi React aplikacije
  ## State
  State je v React-u objekt, ki hrani stanje. Njegovo vrednost lahko po želji spremenimo, vse komponente, ki prikazujejo/uporabljajo to stanje pa se bodo samodejno osvežile, saj so zaznale spremembo vrednosti stanja. Na stanje lahko gledamo kot spremenljivke, ki React komponentam hranijo vredosti. Napiše se tako:
@@ -56,6 +69,22 @@
  POZOR: metodo useEffect() je potrebno na vrhu datoteke uvoziti, drugače stvar ne bo delovala.
      `import { useEffect } from "react";`
  
+ ## Props
+ Props so vrednosti, ki jih React komponentam podamo kot parametre. Podamo lahko tako vrednosti kot tudi metode. Primer react komponente, ki prejme prop (v tem primeru seznam hiš):
+ 
+ `<HiseTable hise={hise} />`
+ 
+ Uporaba prejete vrednosti v komponenti:
+ ```
+ export default function HiseTable({hise}) {
+  return (
+      {hise.map((hisa) => (
+      <p>{hisa.naslov} {hisa.hisna_stevilka}</p>
+      ))}
+   )
+  }
+ ```
+ 
  # Pogoste napake
  - ***module not found*** ob izvedbi ukaza `npm start`
    - Izbrišite datoteko `package-lock.json` ter mapo `node_modules` in ponovno izvedite ukaz `npm install`. Ko se ta izvede, ponovno poskusite pognati projekt.
@@ -65,6 +94,8 @@
 - Vrednost iz .env datoteke se ne posodobi
    - Preverite če se ime spremenljivke začne z REACT_APP
    - Ustavite in zaženite strežnik. Vrednosti spremenljivk v .env se ponovno preberejo šele ob ponovnem zagonu strežnika.
+- CORS error
+   - V zalednji sistem je potrebno vsem controllerjem dodati anotacijo `@CrossOrigin`
 # Uporabne povezave
 - [MUI - React components](https://mui.com/)
 - [React](https://reactjs.org/)
