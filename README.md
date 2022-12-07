@@ -58,7 +58,7 @@ export default api;
   }, [<stanje ob spremembi katerega želimo, da se metoda izvede (lahko je prazno)>]);
  ```
  
- Primer metode, ki se izvede ko se stran prvič naloži in opb vsaki posodobitvi stanja idHise:
+ Primer metode, ki se izvede ko se stran prvič naloži in ob vsaki posodobitvi stanja idHise:
  
   ```
  useEffect(() => {
